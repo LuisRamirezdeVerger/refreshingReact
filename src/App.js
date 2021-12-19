@@ -1,24 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useRef } from "react";
+import Todolist from "./TodoList";
 
 function App() {
+  const [todos, setTodos] = useState([]);
+  const todoNameRef = useRef();
+
+  function handleAddTodo(e) {}
+  const name = todoNameRef.current.value; //Access the value on our <input ref=.../>
+  if (name === "") return;
+  // Clear the box content
+  todoNameRef.current.value = null;
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Todolist todos={todos} />
+      {/* Reference the element in our HTML */}
+      <input ref={todoNameRef} type="text" />
+      <button onClick={handleAddTodo}> Add to do</button>
+      <button> Clear completed</button>
+      <div>0 left to do</div>
+    </>
   );
 }
 
